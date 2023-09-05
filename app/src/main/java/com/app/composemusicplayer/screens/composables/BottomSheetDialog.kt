@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
@@ -26,6 +27,8 @@ import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_surfaceVariant
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 import com.dawinder.musicplayer_jetpackcompose.utils.formatTime
@@ -40,6 +43,7 @@ fun BottomSheetDialog(
 ) {
     Column(
         modifier = Modifier.fillMaxWidth()
+            .background(app_black)
     ) {
         TrackInfo(
             trackImage = selectedTrack.trackImage,
@@ -64,7 +68,7 @@ fun TrackInfo(trackImage: Int, trackName: String, artistName: String) {
         modifier = Modifier
             .fillMaxWidth()
             .height(height = 350.dp)
-            .background(md_theme_light_surfaceVariant)
+            .background(app_white)
     ) {
         TrackImage(
             trackImage = trackImage,
@@ -73,21 +77,28 @@ fun TrackInfo(trackImage: Int, trackName: String, artistName: String) {
                 .padding(all = 16.dp)
         )
     }
-    Text(
-        text = trackName,
-        style = typography.bodyLarge,
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)
-    )
-    Text(
-        text = artistName,
-        style = typography.bodySmall,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp)
-    )
+            .padding(top = 16.dp)
+            .background(app_black),
+        horizontalAlignment = Alignment.CenterHorizontally
+
+    ) {
+        Text(
+            text = trackName,
+            style = typography.bodyLarge,
+            color = app_white
+        )
+
+        Text(
+            text = artistName,
+            style = typography.bodySmall,
+            color = app_white
+        )
+    }
 }
+
 
 
 @Composable
@@ -122,11 +133,13 @@ fun TrackProgressSlider(
     ) {
         Text(
             text = playbackStateValue.currentPlaybackPosition.formatTime(),
-            style = typography.bodySmall
+            style = typography.bodySmall,
+            color = app_white
         )
         Text(
             text = playbackStateValue.currentTrackDuration.formatTime(),
-            style = typography.bodySmall
+            style = typography.bodySmall,
+            color = app_white
         )
     }
 }

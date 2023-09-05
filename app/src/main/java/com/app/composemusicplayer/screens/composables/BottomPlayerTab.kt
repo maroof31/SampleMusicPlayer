@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import Track
+import androidx.compose.foundation.shape.CircleShape
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackName
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_primary
 
 
@@ -30,7 +32,7 @@ fun BottomPlayerTab(
         modifier = Modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
-            .background(color = md_theme_light_primary)
+            .background(color = app_black)
             .clickable(onClick = onBottomTabClick)
             .padding(all = 15.dp)
     ) {
@@ -39,7 +41,8 @@ fun BottomPlayerTab(
         ) {
             TrackImage(
                 trackImage = selectedTrack.trackImage,
-                modifier = Modifier.size(size = 70.dp)
+                modifier = Modifier.size(size = 40.dp)
+                    .clip(CircleShape)
             )
             TrackName(trackName = selectedTrack.trackName, modifier = Modifier.weight(1f))
             PreviousIcon(onClick = playerEvents::onPreviousClick, isBottomTab = true)

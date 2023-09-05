@@ -20,6 +20,12 @@ import androidx.compose.ui.graphics.Color
  * Some additional color roles like `surfaceVariant`, `outline`, `inverseOnSurface`, `inverseSurface`, `surfaceTint`, `outlineVariant`, and `scrim` are also defined,
  * which might be specific to the design needs of this application.
  */
+
+val app_black=Color(0xFF000000)
+val app_black_lighter=Color(0xFF353535)
+val app_white = Color(0xFFFFFFFF)
+
+
 val md_theme_light_primary = Color(0xFF00b59a)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFF45FDDA)

@@ -21,6 +21,8 @@ import com.app.composemusicplayer.R
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimary
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimaryContainer
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
@@ -57,7 +59,7 @@ fun PreviousIcon(onClick: () -> Unit, isBottomTab: Boolean) {
         Icon(
             painter = painterResource(id = R.drawable.ic_previous),
             contentDescription = stringResource(id = R.string.icon_skip_previous),
-            tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
+            tint =  app_white,
             modifier = Modifier.size(48.dp)
         )
     }
@@ -70,7 +72,7 @@ fun PlayPauseIcon(selectedTrack: Track, onClick: () -> Unit, isBottomTab: Boolea
             modifier = Modifier
                 .size(size = 48.dp)
                 .padding(all = 9.dp),
-            color = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
+            color = app_white,
         )
     } else {
         IconButton(onClick = onClick) {
@@ -80,7 +82,7 @@ fun PlayPauseIcon(selectedTrack: Track, onClick: () -> Unit, isBottomTab: Boolea
                     else R.drawable.ic_play
                 ),
                 contentDescription = stringResource(id = R.string.icon_play_pause),
-                tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
+                tint = app_white,
                 modifier = Modifier.size(48.dp)
             )
         }
@@ -94,7 +96,7 @@ fun NextIcon(onClick: () -> Unit, isBottomTab: Boolean) {
         Icon(
             painter = painterResource(id = R.drawable.ic_next),
             contentDescription = stringResource(id = R.string.icon_skip_next),
-            tint = if (isBottomTab) md_theme_light_onPrimary else md_theme_light_onPrimaryContainer,
+            tint = app_white,
             modifier = Modifier.size(48.dp)
         )
     }
