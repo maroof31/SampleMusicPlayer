@@ -38,10 +38,6 @@ class HomeViewModel @Inject constructor(
     private val myPlayer: MyPlayer,
 ) : ViewModel(), PlayerEvents {
 
-
-    private var _songsList: MutableLiveData<List<DataItem>?> = MutableLiveData()
-
-
     private val _songs = mutableStateListOf<SongModel>()
 
     val songs:List<SongModel> get()=_songs
@@ -54,14 +50,11 @@ class HomeViewModel @Inject constructor(
 
     private var selectedTrackIndex: Int by mutableStateOf(-1)
 
-
     private var playbackStateJob: Job? = null
-
 
     private val _playbackState = MutableStateFlow(PlaybackState(0L, 0L))
 
     val playbackState: StateFlow<PlaybackState> get() = _playbackState
-
 
     private var isAuto: Boolean = false
 
@@ -83,7 +76,6 @@ class HomeViewModel @Inject constructor(
         if (!isAuto) myPlayer.setUpTrack(selectedTrackIndex, isTrackPlay)
         isAuto = false
     }
-
     private fun updateState(state: PlayerStates) {
         if (selectedTrackIndex != -1) {
             isTrackPlay = state == STATE_PLAYING

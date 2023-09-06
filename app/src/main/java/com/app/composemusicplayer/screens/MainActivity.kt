@@ -8,6 +8,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +18,7 @@ import com.app.bottomtabscompose.ui.composables.NavHostContainer
 
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
 import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,14 +28,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MusicPlayerJetpackComposeTheme {
-//                // A surface container using the 'background' color from the theme
-//                Surface(
-//                    modifier = Modifier.fillMaxSize(),
-//                    color = MaterialTheme.colorScheme.background
-//                ) {
-//                   HomeScreenParent(viewModel = viewModel)
-//                }
-
+                val systemUiController = rememberSystemUiController()
+                val statusBarColor = Color.Black // Change this to the desired color
+                SideEffect {
+                    systemUiController.setStatusBarColor(statusBarColor)
+                }
                 val navController = rememberNavController()
                 Surface(color = Color.Black) {
                     Scaffold(
@@ -49,18 +48,11 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MusicPlayerJetpackComposeTheme {
-        Greeting("Android")
+
     }
 }

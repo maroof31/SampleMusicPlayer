@@ -3,52 +3,61 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.ui.graphics.painter.Painter
-import coil.compose.rememberImagePainter
 import com.app.composemusicplayer.models.SongModel
-import com.app.musicplayer.util.Constants
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackName
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun BottomPlayerTab(
     selectedTrack: SongModel, playerEvents: PlayerEvents, onBottomTabClick: () -> Unit
 ) {
+    val backgroundColor = Color(android.graphics.Color.parseColor(selectedTrack.accent))
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(shape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
-            .background(color = app_black)
+            .background(color = backgroundColor)
             .clickable(onClick = onBottomTabClick)
-            .padding(all = 15.dp)
+            .padding(start = 15.dp,end=15.dp, bottom = 8.dp, top = 8.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
+            GlideImage(
+                model = selectedTrack.cover.toString(),
+                contentDescription = "",
+                modifier = Modifier
+                    .padding(2.dp)
+                    .size(45.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.FillBounds
+            )
             TrackName(trackName = selectedTrack.name.toString(), modifier = Modifier.weight(1f))
-            PreviousIcon(onClick = playerEvents::onPreviousClick, isBottomTab = true)
-            PlayPauseIcon(
+            Spacer(modifier = Modifier.width(40.dp))
+                        PlayPauseIcon(
                 selectedTrack = selectedTrack,
                 onClick = playerEvents::onPlayPauseClick,
                 isBottomTab = true
             )
-            NextIcon(onClick = playerEvents::onNextClick, isBottomTab = true)
         }
     }
 }

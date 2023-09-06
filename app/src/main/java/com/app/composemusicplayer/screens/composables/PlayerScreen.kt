@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,14 +20,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
 import com.app.composemusicplayer.models.SongModel
-import com.app.composemusicplayer.screens.Greeting
-import com.app.musicplayer.util.Constants
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
@@ -35,9 +31,6 @@ import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 import com.dawinder.musicplayer_jetpackcompose.utils.formatTime
@@ -45,17 +38,18 @@ import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
-fun BottomSheetDialog(
+fun PlayerScreenPlay(
     selectedTrack: SongModel,
     playerEvents: PlayerEvents,
     playbackState: StateFlow<PlaybackState>
 ) {
+    val backgroundColor = Color(android.graphics.Color.parseColor(selectedTrack.accent))
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(app_black)
+            .background(backgroundColor)
     ) {
-        Spacer(modifier = Modifier.height(100.dp).background(app_black))
+        Spacer(modifier = Modifier.height(100.dp).background(backgroundColor))
         TrackInfo(
             trackImage = selectedTrack.cover.toString(),
             trackName = selectedTrack.name.toString(),
@@ -72,9 +66,10 @@ fun BottomSheetDialog(
             onPlayPauseClick = playerEvents::onPlayPauseClick,
             onNextClick = playerEvents::onNextClick
         )
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(50.dp))
     }
 }
+
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -83,7 +78,6 @@ fun TrackInfo(trackImage: String, trackName: String, artistName: String,accent:S
         modifier = Modifier
             .fillMaxWidth()
             .height(height = 350.dp)
-            .background(app_white)
     ) {
         GlideImage(
             model = trackImage,
@@ -97,8 +91,7 @@ fun TrackInfo(trackImage: String, trackName: String, artistName: String,accent:S
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp)
-            .background(app_black),
+            .padding(top = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
@@ -140,8 +133,12 @@ fun TrackProgressSlider(
         valueRange = 0f..playbackStateValue.currentTrackDuration.toFloat(),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-    )
+            .padding(horizontal = 16.dp),
+        colors = SliderDefaults.colors(
+            thumbColor = Color.White,
+            activeTrackColor = Color.White,
+            inactiveTrackColor = Color.Gray
+    ))
     Row(
         modifier = Modifier
             .fillMaxWidth()

@@ -5,7 +5,7 @@
 package com.dawinder.musicplayer_jetpackcompose.ui.composable
 
 import BottomPlayerTab
-import BottomSheetDialog
+import PlayerScreenPlay
 import TrackListItem
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
@@ -47,7 +47,6 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
     )
     val scope = rememberCoroutineScope()
     val onBottomTabClick: () -> Unit = { scope.launch { fullScreenState.show() } }
-
     Surface(
         modifier = Modifier.fillMaxSize().background(Color.White),
         color = Color.Black,
@@ -79,7 +78,7 @@ fun TrackList(
     ) {
         ModalBottomSheetLayout(
             sheetContent = {
-                if (selectedTrack != null) BottomSheetDialog(
+                if (selectedTrack != null) PlayerScreenPlay(
                     selectedTrack, playerEvents, playbackState
                 )
             },

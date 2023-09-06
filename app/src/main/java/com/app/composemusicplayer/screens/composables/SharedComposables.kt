@@ -50,8 +50,6 @@ fun TrackName(trackName: String, modifier: Modifier) {
         modifier = modifier.padding(start = 16.dp, end = 8.dp)
     )
 }
-
-
 @Composable
 fun PreviousIcon(onClick: () -> Unit, isBottomTab: Boolean) {
     IconButton(onClick = onClick) {
@@ -59,7 +57,7 @@ fun PreviousIcon(onClick: () -> Unit, isBottomTab: Boolean) {
             painter = painterResource(id = R.drawable.ic_previous),
             contentDescription = stringResource(id = R.string.icon_skip_previous),
             tint =  app_white,
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(30.dp)
         )
     }
 }
@@ -69,7 +67,7 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
     if (selectedTrack.state == PlayerStates.STATE_BUFFERING) {
         CircularProgressIndicator(
             modifier = Modifier
-                .size(size = 48.dp)
+                .size(size = 70.dp)
                 .padding(all = 9.dp),
             color = app_white,
         )
@@ -82,7 +80,7 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
                 ),
                 contentDescription = stringResource(id = R.string.icon_play_pause),
                 tint = app_white,
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier.size(70.dp)
             )
         }
     }
@@ -96,7 +94,7 @@ fun NextIcon(onClick: () -> Unit, isBottomTab: Boolean) {
             painter = painterResource(id = R.drawable.ic_next),
             contentDescription = stringResource(id = R.string.icon_skip_next),
             tint = app_white,
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(30.dp)
         )
     }
 }
