@@ -20,7 +20,6 @@ class MyPlayer @Inject constructor(private val player: ExoPlayer) : Player.Liste
 
     val playerState = MutableStateFlow(STATE_IDLE)
 
-
     val currentPlaybackPosition: Long
         get() = if (player.currentPosition > 0) player.currentPosition else 0L
 

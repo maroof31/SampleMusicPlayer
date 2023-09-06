@@ -1,18 +1,19 @@
 package com.app.composemusicplayer.screens
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.HomeScreenParent
+import androidx.navigation.compose.rememberNavController
+import com.app.bottomtabscompose.ui.composables.BottomNavigationBar
+import com.app.bottomtabscompose.ui.composables.NavHostContainer
 
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
 import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
@@ -25,12 +26,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MusicPlayerJetpackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                   HomeScreenParent(viewModel = viewModel)
+//                // A surface container using the 'background' color from the theme
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colorScheme.background
+//                ) {
+//                   HomeScreenParent(viewModel = viewModel)
+//                }
+
+                val navController = rememberNavController()
+                Surface(color = Color.Black) {
+                    Scaffold(
+                        bottomBar = {
+                            BottomNavigationBar(navController = navController)
+                        }, content = { padding ->
+                            NavHostContainer(navController = navController, padding = padding,viewModel)
+                        }
+                    )
                 }
             }
         }

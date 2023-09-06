@@ -104,29 +104,33 @@ class HomeViewModel @Inject constructor(
     fun getsongsList() {
         setIsLoading(true)
         viewModelScope.launch {
-           val response = repository.getSongsL()
-            response.body()?.data?.let { dataItems ->
-                // Map DataItem objects to SongModel and add them to _songs list
-                val songModels = dataItems.map { dataItem ->
-                    SongModel(
-                        dateUpdated = dataItem?.dateUpdated,
-                        artist = dataItem?.artist,
-                        dateCreated = dataItem?.dateCreated,
-                        userCreated = dataItem?.userCreated,
-                        sort = dataItem?.sort,
-                        accent = dataItem?.accent,
-                        url = dataItem?.url,
-                        cover =Constants.COVER_BASE_URL+dataItem?.cover,
-                        userUpdated = dataItem?.userUpdated,
-                        topTrack = dataItem?.topTrack,
-                        name = dataItem?.name,
-                        id = dataItem?.id,
-                        status = dataItem?.status,
-                        state = PlayerStates.STATE_IDLE
-                    )
+            try {
+                val response = repository.getSongsL()
+                response.body()?.data?.let { dataItems ->
+                    // Map DataItem objects to SongModel and add them to _songs list
+                    val songModels = dataItems.map { dataItem ->
+                        SongModel(
+                            dateUpdated = dataItem?.dateUpdated,
+                            artist = dataItem?.artist,
+                            dateCreated = dataItem?.dateCreated,
+                            userCreated = dataItem?.userCreated,
+                            sort = dataItem?.sort,
+                            accent = dataItem?.accent,
+                            url = dataItem?.url,
+                            cover = Constants.COVER_BASE_URL + dataItem?.cover,
+                            userUpdated = dataItem?.userUpdated,
+                            topTrack = dataItem?.topTrack,
+                            name = dataItem?.name,
+                            id = dataItem?.id,
+                            status = dataItem?.status,
+                            state = PlayerStates.STATE_IDLE
+                        )
+                    }
+                    _songs.addAll(songModels)
+                    myPlayer.iniPlayer(songs.toMediaItemList())
                 }
-                _songs.addAll(songModels)
-                myPlayer.iniPlayer(songs.toMediaItemList())
+            }catch (e:Exception){
+
             }
         }
     }

@@ -37,9 +37,8 @@ import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 
 @Composable
 fun TrackListItem(track: SongModel, onTrackClick: () -> Unit) {
-    val bgColor = if (track.isSelected) app_black else app_black_lighter
-    val textColor =
-        if (track.isSelected) app_white else app_white
+    val bgColor = if (track.isSelected) app_black else app_black
+    val textColor = app_white
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier

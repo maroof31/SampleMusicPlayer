@@ -22,9 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.app.composemusicplayer.models.SongModel
+import com.app.composemusicplayer.screens.Greeting
 import com.app.musicplayer.util.Constants
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
@@ -34,6 +36,7 @@ import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
+import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
@@ -51,8 +54,8 @@ fun BottomSheetDialog(
         modifier = Modifier
             .fillMaxWidth()
             .background(app_black)
-
     ) {
+        Spacer(modifier = Modifier.height(100.dp).background(app_black))
         TrackInfo(
             trackImage = selectedTrack.cover.toString(),
             trackName = selectedTrack.name.toString(),
@@ -85,7 +88,9 @@ fun TrackInfo(trackImage: String, trackName: String, artistName: String,accent:S
         GlideImage(
             model = trackImage,
             contentDescription = "",
-            modifier = Modifier.padding(16.dp).fillMaxSize(),
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
     }
@@ -180,3 +185,4 @@ fun TrackControls(
         NextIcon(onClick = onNextClick, isBottomTab = false)
     }
 }
+
