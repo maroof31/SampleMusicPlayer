@@ -32,6 +32,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.app.composemusicplayer.models.SongModel
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
@@ -39,6 +40,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun HomeScreenParent(viewModel: HomeViewModel) {
     val fullScreenState = rememberModalBottomSheetState(
@@ -52,7 +54,7 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
         color = Color.Black
     ) {
         TrackList(
-            tracks = viewModel.tracks,
+            tracks = viewModel.songs,
             selectedTrack = viewModel.selectedTrack,
             fullScreenState = fullScreenState,
             playerEvents = viewModel,
@@ -64,8 +66,8 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
 
 @Composable
 fun TrackList(
-    tracks: List<Track>,
-    selectedTrack: Track?,
+    tracks: List<SongModel>,
+    selectedTrack: SongModel?,
     fullScreenState: ModalBottomSheetState,
     playerEvents: PlayerEvents,
     playbackState: StateFlow<PlaybackState>,

@@ -2,6 +2,7 @@ package com.dawinder.musicplayer_jetpackcompose.utils
 
 import androidx.media3.common.MediaItem
 import Track
+import com.app.composemusicplayer.models.SongModel
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
@@ -14,16 +15,18 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 
-fun MutableList<Track>.resetTracks() {
+fun MutableList<SongModel>.resetTracks() {
     this.forEach { track ->
         track.isSelected = false
         track.state = STATE_IDLE
     }
 }
 
-fun List<Track>.toMediaItemList(): MutableList<MediaItem> {
-    return this.map { MediaItem.fromUri(it.trackUrl) }.toMutableList()
+
+fun List<SongModel>.toMediaItemList(): MutableList<MediaItem> {
+    return this.map { MediaItem.fromUri(it.url.toString()) }.toMutableList()
 }
+
 
 
 fun CoroutineScope.collectPlayerState(

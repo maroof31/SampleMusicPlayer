@@ -12,8 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import Track
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.graphics.painter.Painter
+import coil.compose.rememberImagePainter
+import com.app.composemusicplayer.models.SongModel
+import com.app.musicplayer.util.Constants
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.NextIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
@@ -21,12 +24,11 @@ import com.dawinder.musicplayer_jetpackcompose.ui.composable.PreviousIcon
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackName
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_primary
 
 
 @Composable
 fun BottomPlayerTab(
-    selectedTrack: Track, playerEvents: PlayerEvents, onBottomTabClick: () -> Unit
+    selectedTrack: SongModel, playerEvents: PlayerEvents, onBottomTabClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -39,12 +41,18 @@ fun BottomPlayerTab(
         Row(
             verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
+            val painter: Painter = rememberImagePainter(
+                data = Constants.COVER_BASE_URL+selectedTrack.cover,
+                builder = {
+
+                }
+            )
             TrackImage(
-                trackImage = selectedTrack.trackImage,
+                trackImage = painter,
                 modifier = Modifier.size(size = 40.dp)
                     .clip(CircleShape)
             )
-            TrackName(trackName = selectedTrack.trackName, modifier = Modifier.weight(1f))
+            TrackName(trackName = selectedTrack.name.toString(), modifier = Modifier.weight(1f))
             PreviousIcon(onClick = playerEvents::onPreviousClick, isBottomTab = true)
             PlayPauseIcon(
                 selectedTrack = selectedTrack,

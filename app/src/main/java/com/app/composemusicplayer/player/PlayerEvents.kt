@@ -1,6 +1,7 @@
 package com.dawinder.musicplayer_jetpackcompose.player
 
 import Track
+import com.app.composemusicplayer.models.SongModel
 
 
 /**
@@ -28,7 +29,7 @@ interface PlayerEvents {
      *
      * @param track The track that was clicked.
      */
-    fun onTrackClick(track: Track)
+    fun onTrackClick(track: SongModel)
 
     /**
      * Invoked when the position of the seek bar has changed. The new position is provided as a parameter.

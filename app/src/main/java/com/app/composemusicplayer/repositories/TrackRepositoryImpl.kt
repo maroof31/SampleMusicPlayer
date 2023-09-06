@@ -2,6 +2,9 @@ package com.dawinder.musicplayer_jetpackcompose.repositories
 
 import com.app.composemusicplayer.R
 import Track
+import com.app.composemusicplayer.models.SongModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import javax.inject.Inject
 
 
@@ -11,6 +14,7 @@ class TrackRepositoryImpl @Inject constructor() : TrackRepository {
      * A list of tracks stored in-memory.
      */
     private val tracks = mutableListOf<Track>()
+    private val songs = mutableListOf<SongModel>()
 
     /**
      * Initializes the tracks repository.
@@ -106,4 +110,15 @@ class TrackRepositoryImpl @Inject constructor() : TrackRepository {
     override fun getTrackList(): List<Track> {
         return tracks
     }
+
+    override fun getSongsList(): List<SongModel> {
+        return songs
+    }
+
+    fun parseJsonToSongList(jsonData: String): List<SongModel> {
+        val gson = Gson()
+        val listType = object : TypeToken<List<SongModel>>() {}.type
+        return gson.fromJson(jsonData, listType)
+    }
+
 }

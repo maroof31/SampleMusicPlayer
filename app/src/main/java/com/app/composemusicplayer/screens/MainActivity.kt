@@ -34,7 +34,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        Log.d("Content","has been set")
     }
 }
 

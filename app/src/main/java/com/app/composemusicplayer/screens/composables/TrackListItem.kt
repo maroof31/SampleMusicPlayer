@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalGlideComposeApi::class)
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,7 +13,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.geometry.CornerRadius
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
+import coil.transform.RoundedCornersTransformation
+import com.app.composemusicplayer.models.SongModel
+import com.app.musicplayer.util.Constants
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black_lighter
@@ -24,7 +36,7 @@ import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 
 
 @Composable
-fun TrackListItem(track: Track, onTrackClick: () -> Unit) {
+fun TrackListItem(track: SongModel, onTrackClick: () -> Unit) {
     val bgColor = if (track.isSelected) app_black else app_black_lighter
     val textColor =
         if (track.isSelected) app_white else app_white
@@ -36,17 +48,21 @@ fun TrackListItem(track: Track, onTrackClick: () -> Unit) {
             .background(color = bgColor)
             .clickable(onClick = onTrackClick)
     ) {
-        TrackImage(trackImage = track.trackImage, modifier = Modifier.
-             size(size = 64.dp)
-            .clip(CircleShape))
+        GlideImage(
+            model = track.cover.toString(),
+            contentDescription = "",
+            modifier = Modifier.padding(5.dp).size(60.dp).clip(CircleShape),
+            contentScale = ContentScale.FillBounds
+        )
         Column(
             modifier = Modifier
                 .padding(start = 10.dp, end = 10.dp)
                 .weight(weight = 1f)
         ) {
-            Text(text = track.trackName, style = typography.bodyLarge, color = textColor)
-            Text(text = track.artistName, style = typography.bodySmall, color = textColor)
+            Text(text = track.name.toString(), style = typography.bodyLarge, color = textColor)
+            Text(text = track.artist.toString(), style = typography.bodySmall, color = textColor)
         }
 
     }
 }
+

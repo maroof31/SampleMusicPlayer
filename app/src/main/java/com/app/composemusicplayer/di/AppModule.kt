@@ -3,6 +3,7 @@ package com.dawinder.musicplayer_jetpackcompose.di
 import android.app.Application
 import android.content.Context
 import androidx.media3.exoplayer.ExoPlayer
+import com.app.composemusicplayer.repositories.Repository
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import dagger.Module
 import dagger.Provides
@@ -34,4 +35,6 @@ class AppModule {
     fun provideMyPlayer(player: ExoPlayer): MyPlayer {
         return MyPlayer(player)
     }
+
+
 }

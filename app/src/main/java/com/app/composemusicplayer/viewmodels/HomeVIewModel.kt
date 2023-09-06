@@ -9,6 +9,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import Track
+import androidx.lifecycle.MutableLiveData
+import com.app.composemusicplayer.models.SongModel
+import com.app.composemusicplayer.repositories.Repository
+import com.app.musicplayer.models.response.DataItem
+import com.app.musicplayer.util.Constants
 import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
 import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
@@ -31,72 +36,47 @@ import javax.inject.Inject
 @Suppress("EmptyMethod")
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    trackRepository: TrackRepository, private val myPlayer: MyPlayer
+    val repository: Repository,
+    trackRepository: TrackRepository,
+    private val myPlayer: MyPlayer,
 ) : ViewModel(), PlayerEvents {
-    /**
-     * A mutable state list of all tracks.
-     */
-    private val _tracks = mutableStateListOf<Track>()
-    /**
-     * An immutable snapshot of the current list of tracks.
-     */
-    val tracks: List<Track> get() = _tracks
 
-    /**
-     * A private Boolean variable to keep track of whether a track is currently being played or not.
-     */
+
+    private var _songsList: MutableLiveData<List<DataItem>?> = MutableLiveData()
+
+
+    private val _songs = mutableStateListOf<SongModel>()
+
+    val songs:List<SongModel> get()=_songs
+    
     private var isTrackPlay: Boolean = false
+    private var _isLoading = MutableLiveData<Boolean>()
 
-    /**
-     * A public property backed by mutable state that holds the currently selected [Track].
-     * It can only be set within the [HomeViewModel] class.
-     */
-    var selectedTrack: Track? by mutableStateOf(null)
+    var selectedTrack: SongModel? by mutableStateOf(null)
         private set
-    /**
-     * A private property backed by mutable state that holds the index of the currently selected track.
-     */
+
     private var selectedTrackIndex: Int by mutableStateOf(-1)
 
-    /**
-     * A nullable [Job] instance that represents the ongoing process of updating the playback state.
-     */
+
     private var playbackStateJob: Job? = null
 
-    /**
-     * A private [MutableStateFlow] that holds the current [PlaybackState].
-     * It is used to emit updates about the playback state to observers.
-     */
+
     private val _playbackState = MutableStateFlow(PlaybackState(0L, 0L))
-    /**
-     * A public property that exposes the [_playbackState] as an immutable [StateFlow] for observers.
-     */
+
     val playbackState: StateFlow<PlaybackState> get() = _playbackState
 
-    /**
-     * A private Boolean variable to keep track of whether the track selection is automatic (i.e., due to the completion of a track) or manual.
-     */
+
     private var isAuto: Boolean = false
 
-    /**
-     * Initializes the ViewModel. It populates the list of tracks, sets up the media player,
-     * and observes the player state.
-     */
     init {
-        _tracks.addAll(trackRepository.getTrackList())
-        myPlayer.iniPlayer(tracks.toMediaItemList())
+        getsongsList()
         observePlayerState()
     }
 
-    /**
-     * Handles track selection.
-     *
-     * @param index The index of the selected track in the track list.
-     */
     private fun onTrackSelected(index: Int) {
         if (selectedTrackIndex == -1) isTrackPlay = true
         if (selectedTrackIndex == -1 || selectedTrackIndex != index) {
-            _tracks.resetTracks()
+            _songs.resetTracks()
             selectedTrackIndex = index
             setUpTrack()
         }
@@ -107,18 +87,13 @@ class HomeViewModel @Inject constructor(
         isAuto = false
     }
 
-    /**
-     * Updates the playback state and launches or cancels the playback state job accordingly.
-     *
-     * @param state The new player state.
-     */
     private fun updateState(state: PlayerStates) {
         if (selectedTrackIndex != -1) {
             isTrackPlay = state == STATE_PLAYING
-            _tracks[selectedTrackIndex].state = state
-            _tracks[selectedTrackIndex].isSelected = true
+            _songs[selectedTrackIndex].state = state
+            _songs[selectedTrackIndex].isSelected = true
             selectedTrack = null
-            selectedTrack = tracks[selectedTrackIndex]
+            selectedTrack = songs[selectedTrackIndex]
 
             updatePlaybackState(state)
             if (state == STATE_NEXT_TRACK) {
@@ -129,6 +104,40 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun getsongsList() {
+        setIsLoading(true)
+        viewModelScope.launch {
+           val response = repository.getSongsL()
+            response.body()?.data?.let { dataItems ->
+                // Map DataItem objects to SongModel and add them to _songs list
+                val songModels = dataItems.map { dataItem ->
+                    SongModel(
+                        dateUpdated = dataItem?.dateUpdated,
+                        artist = dataItem?.artist,
+                        dateCreated = dataItem?.dateCreated,
+                        userCreated = dataItem?.userCreated,
+                        sort = dataItem?.sort,
+                        accent = dataItem?.accent,
+                        url = dataItem?.url,
+                        cover =Constants.COVER_BASE_URL+dataItem?.cover,
+                        userUpdated = dataItem?.userUpdated,
+                        topTrack = dataItem?.topTrack,
+                        name = dataItem?.name,
+                        id = dataItem?.id,
+                        status = dataItem?.status,
+                        state = PlayerStates.STATE_IDLE
+                    )
+                }
+                _songs.addAll(songModels)
+                myPlayer.iniPlayer(songs.toMediaItemList())
+            }
+        }
+    }
+    fun setIsLoading(isLoading: Boolean) {
+        _isLoading.value = isLoading
+    }
+
+
     private fun observePlayerState() {
         viewModelScope.collectPlayerState(myPlayer, ::updateState)
     }
@@ -138,53 +147,30 @@ class HomeViewModel @Inject constructor(
         playbackStateJob = viewModelScope.launchPlaybackStateJob(_playbackState, state, myPlayer)
     }
 
-    /**
-     * Implementation of [PlayerEvents.onPreviousClick].
-     * Changes to the previous track if one exists.
-     */
+
     override fun onPreviousClick() {
         if (selectedTrackIndex > 0) onTrackSelected(selectedTrackIndex - 1)
     }
 
-    /**
-     * Implementation of [PlayerEvents.onNextClick].
-     * Changes to the next track in the list if one exists.
-     */
+
     override fun onNextClick() {
-        if (selectedTrackIndex < tracks.size - 1) onTrackSelected(selectedTrackIndex + 1)
+        if (selectedTrackIndex < songs.size - 1) onTrackSelected(selectedTrackIndex + 1)
     }
 
-    /**
-     * Implementation of [PlayerEvents.onPlayPauseClick].
-     * Toggles play/pause state of the current track.
-     */
+
     override fun onPlayPauseClick() {
         myPlayer.playPause()
     }
 
-    /**
-     * Implementation of [PlayerEvents.onTrackClick].
-     * Selects the clicked track from the track list.
-     *
-     * @param track The track that was clicked.
-     */
-    override fun onTrackClick(track: Track) {
-        onTrackSelected(tracks.indexOf(track))
+
+    override fun onTrackClick(track: SongModel) {
+        onTrackSelected(songs.indexOf(track))
     }
 
-    /**
-     * Implementation of [PlayerEvents.onSeekBarPositionChanged].
-     * Seeks to the specified position in the current track.
-     *
-     * @param position The position to seek to.
-     */
     override fun onSeekBarPositionChanged(position: Long) {
         viewModelScope.launch { myPlayer.seekToPosition(position) }
     }
 
-    /**
-     * Cleans up the media player when the ViewModel is cleared.
-     */
     override fun onCleared() {
         super.onCleared()
         myPlayer.releasePlayer()

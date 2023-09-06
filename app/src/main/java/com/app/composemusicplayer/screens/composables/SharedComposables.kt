@@ -16,21 +16,20 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import Track
+import androidx.compose.ui.graphics.painter.Painter
 import com.app.composemusicplayer.R
+import com.app.composemusicplayer.models.SongModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimary
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimaryContainer
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 
 
 @Composable
 fun TrackImage(
-    trackImage: Int,
+    trackImage: Painter,
     modifier: Modifier
 ) {
     GlideImage(
@@ -66,7 +65,7 @@ fun PreviousIcon(onClick: () -> Unit, isBottomTab: Boolean) {
 }
 
 @Composable
-fun PlayPauseIcon(selectedTrack: Track, onClick: () -> Unit, isBottomTab: Boolean) {
+fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Boolean) {
     if (selectedTrack.state == PlayerStates.STATE_BUFFERING) {
         CircularProgressIndicator(
             modifier = Modifier

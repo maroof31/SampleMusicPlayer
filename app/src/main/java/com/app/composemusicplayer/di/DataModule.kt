@@ -1,5 +1,6 @@
 package com.dawinder.musicplayer_jetpackcompose.di
 
+import com.app.composemusicplayer.repositories.Repository
 import com.dawinder.musicplayer_jetpackcompose.repositories.TrackRepository
 import com.dawinder.musicplayer_jetpackcompose.repositories.TrackRepositoryImpl
 import dagger.Module
@@ -28,4 +29,14 @@ class DataModule {
     fun provideTrackRepository(trackRepository: TrackRepositoryImpl): TrackRepository {
         return trackRepository
     }
+
+    @Provides
+    @Singleton
+    fun provideRepository(): Repository {
+        return Repository()
+    }
+
+
+
+
 }

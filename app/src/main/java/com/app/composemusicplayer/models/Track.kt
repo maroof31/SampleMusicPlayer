@@ -9,7 +9,6 @@ data class Track(
     var isSelected: Boolean = false,
     var state: PlayerStates = PlayerStates.STATE_IDLE
 ) {
-
         class Builder {
         private var trackId: Int = 0
         private lateinit var trackName: String
