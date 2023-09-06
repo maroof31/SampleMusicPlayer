@@ -41,17 +41,6 @@ fun BottomPlayerTab(
         Row(
             verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()
         ) {
-            val painter: Painter = rememberImagePainter(
-                data = Constants.COVER_BASE_URL+selectedTrack.cover,
-                builder = {
-
-                }
-            )
-            TrackImage(
-                trackImage = painter,
-                modifier = Modifier.size(size = 40.dp)
-                    .clip(CircleShape)
-            )
             TrackName(trackName = selectedTrack.name.toString(), modifier = Modifier.weight(1f))
             PreviousIcon(onClick = playerEvents::onPreviousClick, isBottomTab = true)
             PlayPauseIcon(

@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import Track
 import androidx.lifecycle.MutableLiveData
 import com.app.composemusicplayer.models.SongModel
 import com.app.composemusicplayer.repositories.Repository
@@ -21,7 +20,6 @@ import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_END
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_NEXT_TRACK
 import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_PLAYING
-import com.dawinder.musicplayer_jetpackcompose.repositories.TrackRepository
 import com.dawinder.musicplayer_jetpackcompose.utils.collectPlayerState
 import com.dawinder.musicplayer_jetpackcompose.utils.launchPlaybackStateJob
 import com.dawinder.musicplayer_jetpackcompose.utils.resetTracks
@@ -37,7 +35,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     val repository: Repository,
-    trackRepository: TrackRepository,
     private val myPlayer: MyPlayer,
 ) : ViewModel(), PlayerEvents {
 

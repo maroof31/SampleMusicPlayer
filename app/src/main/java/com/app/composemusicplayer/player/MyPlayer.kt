@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 class MyPlayer @Inject constructor(private val player: ExoPlayer) : Player.Listener {
 
-
     val playerState = MutableStateFlow(STATE_IDLE)
 
 
@@ -84,10 +83,7 @@ class MyPlayer @Inject constructor(private val player: ExoPlayer) : Player.Liste
         }
     }
 
-    /**
-     * Called when the player's playback state changes. This implementation emits
-     * a state to the playerState flow corresponding to the new playback state.
-     */
+
     override fun onPlaybackStateChanged(playbackState: Int) {
         when (playbackState) {
             Player.STATE_IDLE -> {
