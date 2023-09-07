@@ -17,21 +17,7 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 
 ![Music Player App](app_screenshot.png)
 
-### Key Benefits of Using ExoPlayer
-- **Versatility**: ExoPlayer is highly customizable, making it suitable for a wide range of media playback scenarios, from simple audio playback to complex video streaming.
-- **Adaptive Streaming**: ExoPlayer supports adaptive streaming formats like DASH and HLS, providing seamless playback quality adjustments based on network conditions.
-- **Wide Format Support**: It can handle various media formats and codecs, ensuring compatibility with different types of content.
-- **Low Latency**: ExoPlayer is optimized for low latency, making it suitable for real-time applications like music streaming.
 
-### Benefits of Using Hilt Dependency Injection
-- **Simplifies Dependency Management**: Hilt eliminates the need for manual dependency injection setup, reducing boilerplate code and making the codebase cleaner and more maintainable.
-- **Scalability**: It simplifies the addition of new components or dependencies as the app evolves, ensuring a scalable and extensible architecture.
-- **Improved Testing**: Hilt's built-in support for testing makes it easier to write unit tests and ensure code correctness.
-
-### Benefits of Using Jetpack Compose
-- **Declarative UI**: Jetpack Compose enables you to describe the UI in a more concise and intuitive manner, reducing UI-related bugs and improving code readability.
-- **Reusable Components**: Compose encourages the creation of reusable UI components, promoting a modular and maintainable codebase.
-- **Consistency**: The Material Library offers pre-designed UI elements and guidelines, ensuring a consistent and visually pleasing user interface.
 
 ## Features
 
@@ -79,6 +65,29 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 ## Video Playback
 
 [Watch a demo of the Music Player App in action](app_demo.mp4)
+
+###  MVVM Architecture
+- **Separation of Concerns**: MVVM separates the app into three distinct layers—Model, View, and ViewModel—resulting in cleaner, more organized code.
+- **Testability**: ViewModel allows for easier unit testing of the app's business logic, enhancing code quality and reliability.
+- **Data Binding**: MVVM naturally integrates with data binding, simplifying the synchronization of UI elements with data changes.
+- **Scalability**: MVVM is well-suited for large, complex apps as it encourages a modular and maintainable architecture.
+
+
+###  ExoPlayer
+- **Versatility**: ExoPlayer is highly customizable, making it suitable for a wide range of media playback scenarios, from simple audio playback to complex video streaming.
+- **Adaptive Streaming**: ExoPlayer supports adaptive streaming formats like DASH and HLS, providing seamless playback quality adjustments based on network conditions.
+- **Wide Format Support**: It can handle various media formats and codecs, ensuring compatibility with different types of content.
+- **Low Latency**: ExoPlayer is optimized for low latency, making it suitable for real-time applications like music streaming.
+
+###  Hilt Dependency Injection
+- **Simplifies Dependency Management**: Hilt eliminates the need for manual dependency injection setup, reducing boilerplate code and making the codebase cleaner and more maintainable.
+- **Scalability**: It simplifies the addition of new components or dependencies as the app evolves, ensuring a scalable and extensible architecture.
+- **Improved Testing**: Hilt's built-in support for testing makes it easier to write unit tests and ensure code correctness.
+
+### Jetpack Compose
+- **Declarative UI**: Jetpack Compose enables you to describe the UI in a more concise and intuitive manner, reducing UI-related bugs and improving code readability.
+- **Reusable Components**: Compose encourages the creation of reusable UI components, promoting a modular and maintainable codebase.
+- **Consistency**: The Material Library offers pre-designed UI elements and guidelines, ensuring a consistent and visually pleasing user interface.
 
 ## Installation
 
