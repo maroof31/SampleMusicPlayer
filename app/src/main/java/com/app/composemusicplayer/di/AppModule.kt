@@ -1,10 +1,9 @@
-package com.dawinder.musicplayer_jetpackcompose.di
+package com.app.composemusicplayer.di
 
 import android.app.Application
 import android.content.Context
 import androidx.media3.exoplayer.ExoPlayer
-import com.app.composemusicplayer.repositories.Repository
-import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
+import com.app.composemusicplayer.player.MyPlayer
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

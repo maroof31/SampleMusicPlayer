@@ -1,12 +1,10 @@
-package com.dawinder.musicplayer_jetpackcompose.player
+package com.app.composemusicplayer.player
 
 import Track
 import com.app.composemusicplayer.models.SongModel
 
 
-/**
- * An interface for handling player events such as play, pause, next, previous, and seek bar position changes.
- */
+
 interface PlayerEvents {
 
 

@@ -2,7 +2,7 @@
     ExperimentalMaterialApi::class
 )
 
-package com.dawinder.musicplayer_jetpackcompose.ui.composable
+package com.app.composemusicplayer.screens.composables
 
 import BottomPlayerTab
 import PlayerScreenPlay
@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
@@ -35,8 +34,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.app.composemusicplayer.models.SongModel
-import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
+import com.app.composemusicplayer.player.PlaybackState
+import com.app.composemusicplayer.player.PlayerEvents
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
@@ -62,7 +61,7 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
                 tracks = viewModel.songs,
                 selectedTrack = viewModel.selectedTrack,
                 fullScreenState = fullScreenState,
-                playerEvents = viewModel,
+                playerEvents = viewModel.,
                 playbackState = viewModel.playbackState,
                 onBottomTabClick = onBottomTabClick,
                 viewModel

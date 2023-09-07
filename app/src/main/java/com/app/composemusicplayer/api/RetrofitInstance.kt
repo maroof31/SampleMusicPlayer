@@ -1,4 +1,4 @@
-package com.app.musicplayer.api
+package com.app.composemusicplayer.api
 
 import com.app.musicplayer.util.Constants.BASE_URL
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
+import com.app.composemusicplayer.player.PlayerStates
 
 data class Track(
     val trackId: Int = 0,

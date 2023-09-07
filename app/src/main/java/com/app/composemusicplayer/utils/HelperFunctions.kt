@@ -3,7 +3,7 @@ package com.app.musicplayer.util
 import android.net.Uri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
-import com.app.musicplayer.models.response.DataItem
+import com.app.composemusicplayer.models.response.DataItem
 
 class HelperFunctions {
 

@@ -1,8 +1,6 @@
-package com.dawinder.musicplayer_jetpackcompose.player
+package com.app.composemusicplayer.player
 
-/**
- * An enumeration of the possible states for the player.
- */
+
 enum class PlayerStates {
     /**
      * State when the player is idle, not ready to play.

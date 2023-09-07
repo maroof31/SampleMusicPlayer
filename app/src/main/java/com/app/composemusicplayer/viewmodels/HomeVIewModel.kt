@@ -8,18 +8,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.MutableLiveData
 import com.app.composemusicplayer.models.SongModel
+import com.app.composemusicplayer.player.MyPlayer
+import com.app.composemusicplayer.player.PlaybackState
+import com.app.composemusicplayer.player.PlayerEvents
+import com.app.composemusicplayer.player.PlayerStates
 import com.app.composemusicplayer.repositories.Repository
-import com.app.musicplayer.models.response.DataItem
 import com.app.musicplayer.util.Constants
-import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
-import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerEvents
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_END
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_NEXT_TRACK
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_PLAYING
+
 import com.dawinder.musicplayer_jetpackcompose.utils.collectPlayerState
 import com.dawinder.musicplayer_jetpackcompose.utils.launchPlaybackStateJob
 import com.dawinder.musicplayer_jetpackcompose.utils.resetTracks
@@ -78,18 +74,18 @@ class HomeViewModel @Inject constructor(
     }
     private fun updateState(state: PlayerStates) {
         if (selectedTrackIndex != -1) {
-            isTrackPlay = state == STATE_PLAYING
+            isTrackPlay = state == PlayerStates.STATE_PLAYING
             _songs[selectedTrackIndex].state = state
             _songs[selectedTrackIndex].isSelected = true
             selectedTrack = null
             selectedTrack = songs[selectedTrackIndex]
 
             updatePlaybackState(state)
-            if (state == STATE_NEXT_TRACK) {
+            if (state == PlayerStates.STATE_NEXT_TRACK) {
                 isAuto = true
                 onNextClick()
             }
-            if (state == STATE_END) onTrackSelected(0)
+            if (state == PlayerStates.STATE_END) onTrackSelected(0)
         }
     }
 

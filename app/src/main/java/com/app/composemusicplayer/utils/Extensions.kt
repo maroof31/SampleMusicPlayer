@@ -2,11 +2,9 @@ package com.dawinder.musicplayer_jetpackcompose.utils
 
 import androidx.media3.common.MediaItem
 import com.app.composemusicplayer.models.SongModel
-import com.dawinder.musicplayer_jetpackcompose.player.MyPlayer
-import com.dawinder.musicplayer_jetpackcompose.player.PlaybackState
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_IDLE
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates.STATE_PLAYING
+import com.app.composemusicplayer.player.MyPlayer
+import com.app.composemusicplayer.player.*
+import com.app.composemusicplayer.player.PlayerStates
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +15,7 @@ import kotlinx.coroutines.launch
 fun MutableList<SongModel>.resetTracks() {
     this.forEach { track ->
         track.isSelected = false
-        track.state = STATE_IDLE
+        track.state = PlayerStates.STATE_IDLE
     }
 }
 
@@ -54,7 +52,7 @@ fun CoroutineScope.launchPlaybackStateJob(
             )
         )
         delay(1000) // delay for 1 second
-    } while (state == STATE_PLAYING && isActive)
+    } while (state == PlayerStates.STATE_PLAYING && isActive)
 }
 
 fun Long.formatTime(): String {

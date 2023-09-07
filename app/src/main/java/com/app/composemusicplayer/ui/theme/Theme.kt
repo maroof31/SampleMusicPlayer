@@ -54,15 +54,6 @@ private val _lightColors = lightColorScheme(
 
 
 
-
-/**
- * A composable function that wraps the provided content within a Material Theme.
- * It applies either a light or dark color scheme based on the system settings and Android version.
- *
- * @param darkTheme A boolean representing whether the dark theme should be applied. Default is based on the system settings.
- * @param dynamicColor A boolean representing whether dynamic color should be applied. Dynamic color is available on Android 12+. Default is true.
- * @param content The content to be drawn within this theme.
- */
 @Composable
 fun MusicPlayerJetpackComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

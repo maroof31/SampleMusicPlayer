@@ -1,6 +1,8 @@
+
 package com.app.composemusicplayer.models
 
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
+import com.app.composemusicplayer.player.PlayerStates
+
 
 data class SongModel(
     val dateUpdated: String? = null,

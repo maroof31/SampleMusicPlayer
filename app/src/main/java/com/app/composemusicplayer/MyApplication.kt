@@ -1,4 +1,4 @@
-package com.dawinder.musicplayer_jetpackcompose
+package com.app.composemusicplayer
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

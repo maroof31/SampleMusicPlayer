@@ -1,9 +1,9 @@
 @file:OptIn(ExperimentalGlideComposeApi::class, ExperimentalGlideComposeApi::class)
 
-package com.dawinder.musicplayer_jetpackcompose.ui.composable
+package com.app.composemusicplayer.screens.composables
+
 
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,16 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.graphics.painter.Painter
 import com.app.composemusicplayer.R
 import com.app.composemusicplayer.models.SongModel
+import com.app.composemusicplayer.player.PlayerStates
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.dawinder.musicplayer_jetpackcompose.player.PlayerStates
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimary
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography

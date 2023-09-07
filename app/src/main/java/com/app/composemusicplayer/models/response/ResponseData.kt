@@ -1,4 +1,4 @@
-package com.app.musicplayer.models.response
+ package com.app.composemusicplayer.models.response
 
 import com.google.gson.annotations.SerializedName
 
