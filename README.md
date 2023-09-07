@@ -15,7 +15,12 @@
 
 Welcome to the Music Player App, a feature-rich Android application built with Jetpack Compose. This app follows the MVVM (Model-View-ViewModel) architecture pattern and incorporates several key technologies, including Retrofit for network communication, Glide for image loading, and Hilt for dependency injection. The app consists of two main screens: the "For You" screen, which displays a list of songs, and the "Player" screen, which shows the currently playing song along with playback controls. Notably, the background of the "Player" screen dynamically changes based on the cover image of the current song.
 
-![Music Player App](app_screenshot.png)
+
+
+
+ ![List](screenshots/Screenshot_2023-09-07-11-55-42-54_6be19058ca385e9ac801d80dd9b806d5.jpg)
+
+
 
 
 
@@ -64,7 +69,7 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 
 ## Video Playback
 
-[Watch a demo of the Music Player App in action](app_demo.mp4)
+[Watch a demo of the Music Player App in action](screenshots/Record_2023-09-07-11-53-32.mp4)
 
 ###  MVVM Architecture
 - **Separation of Concerns**: MVVM separates the app into three distinct layers—Model, View, and ViewModel—resulting in cleaner, more organized code.
