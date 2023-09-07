@@ -3,7 +3,6 @@
 package com.app.composemusicplayer.screens.composables
 
 
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -69,7 +68,7 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
     if (selectedTrack.state == PlayerStates.STATE_BUFFERING) {
         CircularProgressIndicator(
             modifier = Modifier
-                .size(size = 70.dp)
+                .size(size = 30.dp)
                 .padding(all = 9.dp),
             color = app_white,
         )
@@ -77,18 +76,15 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
         IconButton(onClick = onClick) {
             Icon(
                 painter = painterResource(
-                    id = if (selectedTrack.state == PlayerStates.STATE_PLAYING) R.drawable.ic_pause
+                    id = if (selectedTrack.state == PlayerStates.STATE_PLAYING) R.drawable.baseline_pause_circle_filled_24
                     else R.drawable.ic_play),
                 contentDescription = stringResource(id = R.string.icon_play_pause),
                 tint = app_white,
                 modifier = Modifier.size(70.dp)
-                     .aspectRatio(1f),
             )
         }
     }
 }
-
-
 @Composable
 fun NextIcon(onClick: () -> Unit, isBottomTab: Boolean) {
     IconButton(onClick = onClick) {
