@@ -1,6 +1,6 @@
 @file:Suppress("EmptyMethod")
 
-package com.dawinder.musicplayer_jetpackcompose.viewmodels
+package com.app.composemusicplayer.viewmodels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

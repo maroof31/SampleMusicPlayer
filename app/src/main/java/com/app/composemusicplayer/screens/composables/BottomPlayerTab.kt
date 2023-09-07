@@ -18,10 +18,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.app.composemusicplayer.models.SongModel
 import com.app.composemusicplayer.player.PlayerEvents
+import com.app.composemusicplayer.screens.composables.PlayPauseIcon
+import com.app.composemusicplayer.screens.composables.TrackName
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.PlayPauseIcon
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackName
+
 
 
 @OptIn(ExperimentalGlideComposeApi::class)

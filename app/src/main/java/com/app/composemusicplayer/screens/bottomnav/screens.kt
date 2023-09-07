@@ -25,8 +25,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.HomeScreenParent
-import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
+import com.app.composemusicplayer.screens.composables.HomeScreenParent
+import com.app.composemusicplayer.viewmodels.HomeViewModel
 
 
 @Composable

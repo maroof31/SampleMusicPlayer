@@ -34,13 +34,14 @@ import com.app.composemusicplayer.player.PlayerEvents
 import com.app.composemusicplayer.screens.composables.NextIcon
 import com.app.composemusicplayer.screens.composables.PlayPauseIcon
 import com.app.composemusicplayer.screens.composables.PreviousIcon
+import com.app.composemusicplayer.viewmodels.HomeViewModel
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 import com.dawinder.musicplayer_jetpackcompose.utils.formatTime
 import com.dawinder.musicplayer_jetpackcompose.utils.getCircularIndices
-import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
+
 import kotlinx.coroutines.flow.StateFlow
 import java.lang.Math.abs
 

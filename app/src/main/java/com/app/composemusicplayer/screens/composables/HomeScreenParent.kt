@@ -36,9 +36,9 @@ import androidx.compose.ui.unit.dp
 import com.app.composemusicplayer.models.SongModel
 import com.app.composemusicplayer.player.PlaybackState
 import com.app.composemusicplayer.player.PlayerEvents
+import com.app.composemusicplayer.viewmodels.HomeViewModel
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
-import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
@@ -61,7 +61,7 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
                 tracks = viewModel.songs,
                 selectedTrack = viewModel.selectedTrack,
                 fullScreenState = fullScreenState,
-                playerEvents = viewModel.,
+                playerEvents = viewModel,
                 playbackState = viewModel.playbackState,
                 onBottomTabClick = onBottomTabClick,
                 viewModel

@@ -13,8 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.app.bottomtabscompose.ui.composables.BottomNavigationBar
 import com.app.bottomtabscompose.ui.composables.NavHostContainer
+import com.app.composemusicplayer.viewmodels.HomeViewModel
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.MusicPlayerJetpackComposeTheme
-import com.dawinder.musicplayer_jetpackcompose.viewmodels.HomeViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
