@@ -26,7 +26,12 @@ fun List<SongModel>.toMediaItemList(): MutableList<MediaItem> {
     return this.map { MediaItem.fromUri(it.url.toString()) }.toMutableList()
 }
 
+fun getCircularIndices(listSize: Int, currentIndex: Int): Pair<Int, Int> {
+    val previousIndex = (currentIndex - 1 + listSize) % listSize
+    val nextIndex = (currentIndex + 1) % listSize
 
+    return Pair(previousIndex, nextIndex)
+}
 
 fun CoroutineScope.collectPlayerState(
     myPlayer: MyPlayer, updateState: (PlayerStates) -> Unit

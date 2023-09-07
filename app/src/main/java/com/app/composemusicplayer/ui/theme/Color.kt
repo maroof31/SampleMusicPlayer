@@ -26,12 +26,9 @@ val app_black_lighter=Color(0xFF353535)
 val app_white = Color(0xFFFFFFFF)
 
 
-val md_theme_light_primary = Color(0xFF00b59a)
+
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFF45FDDA)
-val md_theme_light_onPrimaryContainer = Color(0xFF00201A)
-val md_theme_light_secondary = Color(0xFF4B635C)
-val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFCDE8DF)
 val md_theme_light_onSecondaryContainer = Color(0xFF06201A)
 val md_theme_light_tertiary = Color(0xFF436278)

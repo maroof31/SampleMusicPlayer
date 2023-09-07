@@ -2,6 +2,8 @@
 
 package com.dawinder.musicplayer_jetpackcompose.ui.composable
 
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -76,11 +78,11 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
             Icon(
                 painter = painterResource(
                     id = if (selectedTrack.state == PlayerStates.STATE_PLAYING) R.drawable.ic_pause
-                    else R.drawable.ic_play
-                ),
+                    else R.drawable.ic_play),
                 contentDescription = stringResource(id = R.string.icon_play_pause),
                 tint = app_white,
                 modifier = Modifier.size(70.dp)
+                     .aspectRatio(1f),
             )
         }
     }

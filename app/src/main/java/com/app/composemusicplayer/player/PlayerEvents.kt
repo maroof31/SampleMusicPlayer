@@ -9,14 +9,10 @@ import com.app.composemusicplayer.models.SongModel
  */
 interface PlayerEvents {
 
-    /**
-     * Invoked when the play or pause button is clicked.
-     */
+
     fun onPlayPauseClick()
 
-    /**
-     * Invoked when the previous button is clicked.
-     */
+
     fun onPreviousClick()
 
     /**

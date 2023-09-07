@@ -53,10 +53,10 @@ fun NavHostContainer(
             modifier = Modifier.padding(paddingValues = padding),
             builder = {
                 composable("home") {
-                    HomeScreenParent(viewModel = viewModel)
+                     HomeScreenParent(viewModel = viewModel)
                 }
                 composable("search") {
-                    HomeScreenParent(viewModel = viewModel)
+                     HomeScreenParent(viewModel = viewModel)
                 }
             })
     }

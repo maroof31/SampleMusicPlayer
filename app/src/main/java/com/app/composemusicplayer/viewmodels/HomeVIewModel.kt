@@ -39,16 +39,16 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel(), PlayerEvents {
 
     private val _songs = mutableStateListOf<SongModel>()
-
     val songs:List<SongModel> get()=_songs
     
     private var isTrackPlay: Boolean = false
-    private var _isLoading = MutableLiveData<Boolean>()
+     var _isLoading = mutableStateOf<Boolean>(true)
+
 
     var selectedTrack: SongModel? by mutableStateOf(null)
-        private set
 
-    private var selectedTrackIndex: Int by mutableStateOf(-1)
+
+     var selectedTrackIndex: Int by mutableStateOf(-1)
 
     private var playbackStateJob: Job? = null
 
@@ -125,6 +125,7 @@ class HomeViewModel @Inject constructor(
 
             }
         }
+        setIsLoading(false)
     }
     fun setIsLoading(isLoading: Boolean) {
         _isLoading.value = isLoading

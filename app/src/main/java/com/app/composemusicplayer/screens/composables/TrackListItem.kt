@@ -13,31 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
-import coil.transform.RoundedCornersTransformation
 import com.app.composemusicplayer.models.SongModel
-import com.app.musicplayer.util.Constants
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.dawinder.musicplayer_jetpackcompose.ui.composable.TrackImage
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_black_lighter
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.app_white
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onPrimary
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_onSurfaceVariant
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_primary
-import com.dawinder.musicplayer_jetpackcompose.ui.theme.md_theme_light_surfaceVariant
 import com.dawinder.musicplayer_jetpackcompose.ui.theme.typography
 
 
 @Composable
 fun TrackListItem(track: SongModel, onTrackClick: () -> Unit) {
-    val bgColor = if (track.isSelected) app_black else app_black
+    val bgColor =  app_black
     val textColor = app_white
     Row(
         verticalAlignment = Alignment.CenterVertically,
