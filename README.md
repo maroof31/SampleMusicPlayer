@@ -96,7 +96,7 @@ To run the Music Player app on your local machine, follow these steps:
 1. Clone this repository:
 
    ```shell
-   git clone https://github.com/yourusername/music-player-app.git
+   git clone https://github.com/maroof31/SampleMusicPlayer.git
 Open the project in Android Studio.
 
 Build and run the app on an emulator or physical device.
