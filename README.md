@@ -18,7 +18,7 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 
 
 
- ![For You Screen](screenshots/for you.jpg)
+
 
 
 
@@ -62,10 +62,6 @@ Welcome to the Music Player App, a feature-rich Android application built with J
    - Fast and smooth loading of album artwork.
    - Caching to minimize network usage and enhance user experience.
 
-## Screenshots
-
-![For You while playing](screenshots/for you playing.jpg)
-![Player Screen](screenshots/player screen.jpg)
 
 ## Video Playback
 
