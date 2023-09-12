@@ -18,7 +18,7 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 
 
 
- ![List](screenshots/Screenshot_2023-09-07-11-55-42-54_6be19058ca385e9ac801d80dd9b806d5.jpg)
+
 
 
 
@@ -62,14 +62,10 @@ Welcome to the Music Player App, a feature-rich Android application built with J
    - Fast and smooth loading of album artwork.
    - Caching to minimize network usage and enhance user experience.
 
-## Screenshots
-
-![Song List](screenshots/song_list.png)
-![Player Screen](screenshots/player_screen.png)
 
 ## Video Playback
 
-[Watch a demo of the Music Player App in action](screenshots/Record_2023-09-07-11-53-32.mp4)
+[![Video](https://img.youtube.com/vi/rlxzBdNAC4U/0.jpg)](https://www.youtube.com/watch?v=rlxzBdNAC4U)
 
 ###  MVVM Architecture
 - **Separation of Concerns**: MVVM separates the app into three distinct layers—Model, View, and ViewModel—resulting in cleaner, more organized code.
