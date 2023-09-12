@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicPlayer-JetpackCompose</string>
+    <string name="app_name">MusicPlayer</string>
     <string name="app_title">Jetpack Compose Music Player</string>
     <string name="track_image">Track Image</string>
     <string name="icon_play_pause">Icon Play/Pause</string>

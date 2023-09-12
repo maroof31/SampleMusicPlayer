@@ -1,5 +1,4 @@
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
@@ -54,7 +53,7 @@ fun PlayerScreenPlay(
     selectedTrack: SongModel,
     playerEvents: PlayerEvents,
     playbackState: StateFlow<PlaybackState>,
-    viewModel: HomeViewModel,
+    viewModel: HomeViewModel
 ) {
     val backgroundColor = Color(android.graphics.Color.parseColor(selectedTrack.accent))
     Column(

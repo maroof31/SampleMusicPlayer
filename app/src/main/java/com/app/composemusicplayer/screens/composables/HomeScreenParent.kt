@@ -54,15 +54,16 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
     )
     val scope = rememberCoroutineScope()
     val onBottomTabClick: () -> Unit = { scope.launch { fullScreenState.show() } }
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black),
         color = Color.Black,
     ) {     if(viewModel.songs.size==0){
-          showLoading()
+            showLoading()
         }else {
-        TrackList(
+           TrackList(
             tracks = viewModel.songs,
             selectedTrack = viewModel.selectedTrack,
             fullScreenState = fullScreenState,
