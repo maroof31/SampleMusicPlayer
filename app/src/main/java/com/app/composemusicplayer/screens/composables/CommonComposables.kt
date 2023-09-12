@@ -68,7 +68,7 @@ fun PlayPauseIcon(selectedTrack: SongModel, onClick: () -> Unit, isBottomTab: Bo
     if (selectedTrack.state == PlayerStates.STATE_BUFFERING) {
         CircularProgressIndicator(
             modifier = Modifier
-                .size(size = 30.dp)
+                .size(size = 50.dp)
                 .padding(all = 9.dp),
             color = app_white,
         )
