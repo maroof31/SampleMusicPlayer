@@ -1,6 +1,8 @@
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
@@ -51,13 +54,14 @@ fun PlayerScreenPlay(
     selectedTrack: SongModel,
     playerEvents: PlayerEvents,
     playbackState: StateFlow<PlaybackState>,
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel,
 ) {
     val backgroundColor = Color(android.graphics.Color.parseColor(selectedTrack.accent))
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(backgroundColor)
+
     ) {
         Spacer(modifier = Modifier
             .height(100.dp)
@@ -66,7 +70,8 @@ fun PlayerScreenPlay(
             trackImage = selectedTrack.cover.toString(),
             trackName = selectedTrack.name.toString(),
             artistName = selectedTrack.artist.toString(),
-            viewModel
+            viewModel,
+            playerEvents
         )
         TrackProgressSlider(playbackState = playbackState) {
             playerEvents.onSeekBarPositionChanged(it)
@@ -161,12 +166,28 @@ fun TrackInfoNew(
     trackImage: String,
     trackName: String,
     artistName: String,
-    viewModel: HomeViewModel
+    viewModel: HomeViewModel,
+    playerEvents: PlayerEvents
+
 ) {
         Box(
             modifier = Modifier
                 .height(320.dp)
                 .fillMaxWidth()
+                .pointerInput(Unit){
+                    detectDragGestures { change, dragAmount ->
+                        change.consume()
+                        val(x,y)=dragAmount
+                        when{
+                            x>50->{
+                                playerEvents.onPreviousClick()
+                            }
+                            x<-50->{
+                                playerEvents.onNextClick()
+                            }
+                        }
+                    }
+                }
 
         ) {
             val (previousIndex, nextIndex) = getCircularIndices(viewModel.songs.size, viewModel.selectedTrackIndex)
@@ -219,130 +240,6 @@ fun TrackInfoNew(
     }
 }
 
-
-@OptIn(ExperimentalGlideComposeApi::class)
-@Composable
-fun TrackInfoNewWithGestures(
-    trackImage: String,
-    trackName: String,
-    artistName: String,
-    viewModel: HomeViewModel,
-    selectedTrack: SongModel,
-    onPreviousClick: () -> Unit,
-    onPlayPauseClick: () -> Unit,
-    onNextClick: () -> Unit
-) {
-
-    var direction by remember { mutableStateOf(-1)}
-    Box(
-        modifier = Modifier
-            .height(320.dp)
-            .fillMaxWidth()
-            .pointerInput(Unit) {
-                detectDragGestures(
-                    onDrag = { change, dragAmount ->
-                        change.consumeAllChanges()
-
-                        val (x, y) = dragAmount
-                        if (abs(x) > abs(y)) {
-                            when {
-                                x > 0 -> {
-                                    //right
-
-                                    direction = 0
-                                }
-
-                                x < 0 -> {
-                                    // left
-                                    direction = 1
-                                }
-                            }
-                        } else {
-                            when {
-                                y > 0 -> {
-                                    // down
-                                    direction = 2
-                                }
-
-                                y < 0 -> {
-                                    // up
-                                    direction = 3
-                                }
-                            }
-                        }
-
-                    },
-                    onDragEnd = {
-                        when (direction) {
-                            0 -> {
-                                onNextClick
-                            }
-
-                            1 -> {
-                               onPreviousClick
-                            }
-
-                            2 -> {
-
-                            }
-
-                            3 -> {
-
-                            }
-                        }
-                    }
-                )
-            })
-     {
-        val (previousIndex, nextIndex) = getCircularIndices(viewModel.songs.size, viewModel.selectedTrackIndex)
-        GlideImage(
-            model = viewModel.songs.get(previousIndex).cover.toString(),
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(20.dp)
-                .align(Alignment.TopStart),
-            contentScale = ContentScale.FillHeight
-        )
-        GlideImage(
-            model = trackImage,
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(280.dp)
-                .align(Alignment.TopCenter),
-            contentScale = ContentScale.FillBounds
-        )
-        GlideImage(
-            model =  viewModel.songs.get(nextIndex).cover.toString(),
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(20.dp)
-                .align(Alignment.TopEnd),
-            contentScale = ContentScale.FillHeight
-        )
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-
-    ) {
-        Text(
-            text = trackName,
-            style = typography.bodyLarge,
-            color = app_white
-        )
-
-        Text(
-            text = artistName,
-            style = typography.bodySmall,
-            color = app_white
-        )
-    }
-}
 
 
 

@@ -13,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,6 +24,7 @@ import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.app.composemusicplayer.models.SongModel
 import com.app.composemusicplayer.player.PlaybackState
 import com.app.composemusicplayer.player.PlayerEvents
@@ -56,16 +59,19 @@ fun HomeScreenParent(viewModel: HomeViewModel) {
             .fillMaxSize()
             .background(Color.Black),
         color = Color.Black,
-    ) {
-            TrackList(
-                tracks = viewModel.songs,
-                selectedTrack = viewModel.selectedTrack,
-                fullScreenState = fullScreenState,
-                playerEvents = viewModel,
-                playbackState = viewModel.playbackState,
-                onBottomTabClick = onBottomTabClick,
-                viewModel
-            )
+    ) {     if(viewModel.songs.size==0){
+          showLoading()
+        }else {
+        TrackList(
+            tracks = viewModel.songs,
+            selectedTrack = viewModel.selectedTrack,
+            fullScreenState = fullScreenState,
+            playerEvents = viewModel,
+            playbackState = viewModel.playbackState,
+            onBottomTabClick = onBottomTabClick,
+            viewModel
+        )
+    }
     }
 }
 
@@ -78,7 +84,7 @@ fun TrackList(
     playbackState: StateFlow<PlaybackState>,
     onBottomTabClick: () -> Unit,
     viewModel: HomeViewModel
-) {
+){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -92,7 +98,7 @@ fun TrackList(
                 )
             },
             sheetState = fullScreenState,
-            sheetElevation = 8.dp
+            sheetElevation = 8.dp,
         ) {
             Scaffold(Modifier.background(app_black)) { paddingValues ->
                 Box(modifier = Modifier
@@ -135,5 +141,7 @@ fun showLoading(){
                 .padding(all = 9.dp),
             color = app_white,
         )
+        Spacer(modifier = Modifier.padding(20.dp))
+        Text(text = "Loading", fontSize = 16.sp, color = app_white)
     }
 }
