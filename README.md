@@ -65,7 +65,7 @@ Welcome to the Music Player App, a feature-rich Android application built with J
 
 ## Video Playback
 
-[![Video](https://img.youtube.com/vi/rlxzBdNAC4U/0.jpg)](https://www.youtube.com/watch?v=rlxzBdNAC4U)
+[![Video](https://youtube.com/shorts/r1efN8Y29Bc?feature=share)
 
 ###  MVVM Architecture
 - **Separation of Concerns**: MVVM separates the app into three distinct layers—Model, View, and ViewModel—resulting in cleaner, more organized code.
